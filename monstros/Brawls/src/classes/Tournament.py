@@ -6,52 +6,55 @@ from src.classes.Battle import Battle
 
 class Tournament:
     battle = None
+    levels = []
     semifinals = List[Brawler]
     finals = List[Brawler]
 
-    def __init__(self, brawlers: List[Brawler]):
-        if len(brawlers) != 8:
-            raise ValueError("Sua lista de participantes tem que ter exatamente 8 participantes")
-        self.quarterfinals = brawlers
-        self.semifinals = []
-        self.finals = []
+    def __init__(self, brawlers: List[Brawler], levels):
         self.winner = None
+        self.competitors = brawlers
+        self.levels = levels
 
-    def start_quarterfinals(self):
-        print()
-        print("# - Inicio das quartas de finais!")
-        print()
-        while len(self.semifinals) < 4:
-            self.semifinals.append(
-                Battle(
-                    self.quarterfinals.pop(randrange(len(self.quarterfinals))),
-                    self.quarterfinals.pop(randrange(len(self.quarterfinals))),
-                ).do_battle()
-            )
-        self.start_semifinals()
+    # Incia o torneio
+    def start_tournament(self):
+        for level in range(1, self.calc_max_levels(len(self.competitors)) + 1):
+            self.competitors = self.start_level(level, self.competitors)
 
-    def start_semifinals(self):
-        print()
-        print("# - Inicio das semifinais!")
-        print()
-        while len(self.finals) < 2:
-            self.finals.append(
-                Battle(
-                    self.semifinals.pop(randrange(len(self.semifinals))),
-                    self.semifinals.pop(randrange(len(self.semifinals))),
-                ).do_battle()
-            )
-        self.start_finals()
-
-    def start_finals(self):
-        print()
-        print("# - Inicio da grande final!")
-        print()
-        self.winner = Battle(
-            self.finals.pop(),
-            self.finals.pop(),
-        ).do_battle()
+        self.winner = self.competitors.pop()
         print()
         print("E %s vence o torneio!" % self.winner)
 
+    # Inicia uma fase do torneio
+    @staticmethod
+    def start_level(current_level, competitors):
+        print()
+        print("# - Inicio da fase", current_level, "!")
+        print()
+        next_level = []
+        max_duels = len(competitors) / 2
+        while len(next_level) < max_duels:
+            if len(competitors) != 1:
+                brawler1 = competitors.pop(randrange(len(competitors)))
+                brawler2 = competitors.pop(randrange(len(competitors)))
 
+                next_level.append(
+                    Battle(
+                        brawler1,
+                        brawler2,
+                    ).do_battle()
+                )
+            else:
+                wo_winner = competitors.pop()
+                print("Sem adversários, %s passa para próxima fase!" % wo_winner)
+                next_level.append(wo_winner)
+
+        return next_level
+
+    @staticmethod
+    def calc_max_levels(competitors_amount):
+        result = 0
+        while competitors_amount > 1:
+            competitors_amount /= 2
+            result += 1
+
+        return result

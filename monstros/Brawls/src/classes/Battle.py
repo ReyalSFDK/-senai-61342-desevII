@@ -38,9 +38,10 @@ class Battle:
                 winner = self.slower
                 looser = self.fasted
                 break
-        winner.hp = winner.max_hp
         print(
-            "Em %s rodadas, %s derrotou %s na batalha."
-            % (rounds, winner, looser)
+            "Em %s rodadas, %s [lvl %s] derrotou %s [lvl %s] na batalha restando %s de vida."
+            % (rounds, winner, winner.level, looser, looser.level, int(winner.hp))
         )
+        winner.hp = winner.max_hp
+        winner.level_up()
         return winner
