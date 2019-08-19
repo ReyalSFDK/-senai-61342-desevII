@@ -41,19 +41,18 @@ class Brawler:
 
         # Ranged
         if self.type == brawler_types[0]:
-            self.agility *= 1.3
-            self.damage *= 1.3
-            self.defense *= 1.1
+            self.agility *= 1.5
+            self.damage *= 1.5
 
         # Melee
         elif self.type == brawler_types[1]:
-            self.damage *= 1.4
-            self.max_hp *= 1.1
+            self.damage *= 1.5
+            self.max_hp *= 1.5
 
         # Tanker
         elif self.type == brawler_types[2]:
             self.max_hp *= 1.5
-            self.defense *= 1.2
+            self.defense *= 1.5
 
     def __str__(self):
         return self.name

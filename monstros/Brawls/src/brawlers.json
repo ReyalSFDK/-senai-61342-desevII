@@ -19,7 +19,7 @@
       "damage" : 1400,
       "defense": 2016,
       "hp": 5040,
-      "agility": 4,,
+      "agility": 4,
       "brawler_type": "melee"
     }, {
       "name": "Brock",
@@ -118,6 +118,48 @@
       "defense": 1680,
       "hp": 4480,
       "agility": 80,
+      "brawler_type": "ranged"
+    }, {
+      "name": "Poco",
+      "damage" : 2772,
+      "defense": 1680,
+      "hp": 2296,
+      "agility": 80,
+      "brawler_type": "ranged"
+    }, {
+      "name": "Rosa",
+      "damage" : 4032,
+      "defense": 1,
+      "hp": 7000,
+      "agility": 5,
+      "brawler_type": "tanker"
+    }, {
+      "name": "Shelly",
+      "damage" : 2520,
+      "defense": 448,
+      "hp": 5040,
+      "agility": 60,
+      "brawler_type": "ranged"
+    }, {
+      "name": "Rico",
+      "damage" : 3360,
+      "defense": 420,
+      "hp": 3360,
+      "agility": 80,
+      "brawler_type": "ranged"
+    }, {
+      "name": "Carl",
+      "damage" : 1792,
+      "defense": 560,
+      "hp": 6160,
+      "agility": 30,
+      "brawler_type": "melee"
+    }, {
+      "name": "Gene",
+      "damage" : 1400,
+      "defense": 1,
+      "hp": 5040,
+      "agility": 60,
       "brawler_type": "ranged"
     }
   ]
